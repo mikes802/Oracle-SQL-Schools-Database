@@ -231,3 +231,40 @@ FETCH FIRST 1 ROW ONLY;
 |------------|-----------|--------------|-------|------------|
 | James      | Smith     | New Hartford | NY    | 23-SEP-05  |
 </details>
+
+> Q9. Write a query that returns everyone's full name, role at school, salary (N/A for students), and school name.
+<details><summary>Click here for SQL code</summary>
+    
+```sql
+-- Return person's name, role, salary, and school name.
+SELECT
+    p.first_name || ' ' || p.last_name AS full_name,
+    CASE
+        WHEN t.teacher_id IS NOT NULL THEN 'teacher'
+        WHEN pr.principal_id IS NOT NULL THEN 'principal'
+        ELSE 'student' 
+    END AS role,
+    COALESCE(TO_CHAR(t.salary), TO_CHAR(pr.salary), 'N/A') AS salary,
+    s.school_name
+FROM people p
+FULL OUTER JOIN principals pr
+ON p.person_id = pr.person_id
+FULL OUTER JOIN teachers t
+ON p.person_id = t.person_id
+INNER JOIN schools s
+ON p.school_id = s.school_id;
+```
+90 rows returned. Only first and last five shown here:
+| FULL_NAME         | ROLE      | SALARY | SCHOOL_NAME            |
+|-------------------|-----------|--------|------------------------|
+| Jessica Martin    | principal | 77237  | Clinton Central School |
+| Virginia Gonzales | student   | N/A    | Clinton Central School |
+| Sarah Garcia      | teacher   | 53175  | Clinton Central School |
+| Daniel Lewis      | teacher   | 33885  | Clinton Central School |
+| Lisa Hall         | teacher   | 48084  | Clinton Central School |
+...
+| Juan Rivera    | student | N/A   | Fayetteville-Manlius School |
+| Wayne Davis    | student | N/A   | Fayetteville-Manlius School |
+| Louis Bell     | student | N/A   | Fayetteville-Manlius School |
+| Diana Williams | student | N/A   | Fayetteville-Manlius School |
+| Dennis Russell | teacher | 39913 | Fayetteville-Manlius School |
