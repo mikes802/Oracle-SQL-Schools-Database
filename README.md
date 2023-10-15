@@ -193,3 +193,19 @@ WHERE city = 'Clinton'
 | Paul Hill    | 1775 Washington St    | Clinton |
 | Steven Green | 280 Washington Street | Clinton |
 </details>
+
+> Q7. Write a query to obtain the birth date of the oldest student.
+<details><summary>Click here for SQL code</summary>
+    
+```sql
+-- Birth date of the oldest student.
+SELECT
+    MIN(p.birth_date) AS birth_date
+FROM people p
+INNER JOIN students s
+ON p.person_id = s.person_id;
+```
+| BIRTH_DATE |
+|------------|
+| 23-SEP-05  |
+</details>
