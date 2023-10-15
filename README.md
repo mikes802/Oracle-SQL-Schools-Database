@@ -405,7 +405,7 @@ WHERE sub.subject = 'Science'
 | Megan Gray   |
 </details>
 
-> PL/SQL Q1. Text
+> PL/SQL Q1. Write a function called `get_classroom_teacher()` that takes four parameters. Given the arguments, it should return the full name of the classroom teacher. Write a PL/SQL block calling the function with specific variables.
 <details><summary>Click here for PL/SQL code</summary>
 
 ```sql
@@ -461,3 +461,28 @@ BEGIN
 END;
 ```
 ![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/f7707479-e50e-4268-b3f6-dcb83ecc994c)
+</details>
+
+> PL/SQL Q2. Write another PL/SQL block calling the function but change the year to 2023. The function should output "No teacher found."
+<details><summary>Click here for PL/SQL code</summary>
+
+```sql
+DECLARE
+  l_subject     subjects.subject%TYPE       := 'Science';
+  l_school      schools.school_name%TYPE    := 'Fayetteville-Manlius School';
+  l_year        classrooms.year%TYPE        := 2023;
+  l_semester    classrooms.semester%TYPE    := 'spring';
+  l_teacher     VARCHAR2(40);
+BEGIN
+  l_teacher     :=  get_classroom_teacher(
+                subject_in      =>  l_subject,
+                school_name_in  =>  l_school,
+                year_in         =>  l_year,
+                semester_in     =>  l_semester
+                );
+  
+  DBMS_OUTPUT.PUT_LINE('The teacher is ' || l_teacher || '.');
+      
+END;
+```
+![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/632ac23a-4afd-44ca-bf5d-732c994f5757)
