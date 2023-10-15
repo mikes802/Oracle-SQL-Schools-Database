@@ -209,3 +209,25 @@ ON p.person_id = s.person_id;
 |------------|
 | 23-SEP-05  |
 </details>
+
+> Q8. Write a query to obtain the name, address, and birth date of the oldest student.
+<details><summary>Click here for SQL code</summary>
+    
+```sql
+-- Info for oldest student in standalone query.
+SELECT
+    p.first_name,
+    p.last_name,
+    p.city,
+    p.region AS state,
+    p.birth_date AS birth_date
+FROM people p
+INNER JOIN students s
+ON p.person_id = s.person_id
+ORDER BY birth_date
+FETCH FIRST 1 ROW ONLY;
+```
+| FIRST_NAME | LAST_NAME | CITY         | STATE | BIRTH_DATE |
+|------------|-----------|--------------|-------|------------|
+| James      | Smith     | New Hartford | NY    | 23-SEP-05  |
+</details>
