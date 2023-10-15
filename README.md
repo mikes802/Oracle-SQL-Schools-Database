@@ -174,3 +174,22 @@ ORDER BY num_students DESC;
 | New Hartford Central School | 25           |
 | Fayetteville-Manlius School | 12           |
 </details>
+
+> Q6. Create a query to output the full name of the people who live in Clinton with "Washington" in the address.
+<details><summary>Click here for SQL code</summary>
+    
+```sql
+-- Output people in city of Clinton with "Washington" in address.
+SELECT 
+    first_name || ' ' || last_name AS full_name,
+    address,
+    city
+FROM people
+WHERE city = 'Clinton'
+  AND address LIKE '%Washington%';
+```
+| FULL_NAME    | ADDRESS               | CITY    |
+|--------------|-----------------------|---------|
+| Paul Hill    | 1775 Washington St    | Clinton |
+| Steven Green | 280 Washington Street | Clinton |
+</details>
