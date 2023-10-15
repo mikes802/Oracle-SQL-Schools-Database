@@ -97,4 +97,36 @@ FROM teachers;
 | principals | 3           |
 | students   | 72          |
 | teachers   | 15          |
+</details>  
+
+> Q3. Create a query to output the names of all teachers ordered by last name and then by first name.
+<details><summary>Click here for SQL code</summary>
+
+```sql
+-- Output names of teachers ordered by last name and then by first name.  
+SELECT
+    p.first_name,
+    p.last_name
+FROM teachers t
+LEFT JOIN people p
+ON t.person_id = p.person_id
+ORDER BY p.last_name, p.first_name;
+```
+| FIRST_NAME | LAST_NAME |
+|------------|-----------|
+| Nathan     | Carter    |
+| Jacqueline | Cook      |
+| Hannah     | Davis     |
+| Sarah      | Garcia    |
+| Megan      | Gray      |
+| Lisa       | Hall      |
+| Paul       | Hill      |
+| Daniel     | Lewis     |
+| Roger      | Long      |
+| Douglas    | Martinez  |
+| Dennis     | Russell   |
+| Adam       | Thomas    |
+| Kelly      | Thomas    |
+| Martha     | Thomas    |
+| Thomas     | Thompson  |
 </details> 
