@@ -67,6 +67,8 @@ RECORD_COUNT
 </details>  
 
 > Q2. Create a query to output the names and record counts of four different tables.
+<details><summary>Click here for SQL code</summary>  
+    
 ```sql
 -- Query outputting table names and record count for four tables in database
 SELECT 
@@ -95,3 +97,4 @@ FROM teachers;
 | principals | 3           |
 | students   | 72          |
 | teachers   | 15          |
+</details> 
