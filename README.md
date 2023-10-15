@@ -130,3 +130,24 @@ ORDER BY p.last_name, p.first_name;
 | Martha     | Thomas    |
 | Thomas     | Thompson  |
 </details> 
+
+> Q4. Create a query to output the number of people associated with each school sorted in descending order.
+<details><summary>Click here for SQL code</summary>
+    
+```sql
+-- Number of people associated with each school, sort descending order.
+SELECT
+    s.school_name,
+    COUNT(p.school_id) AS num_people
+FROM people p
+INNER JOIN schools s
+ON p.school_id = s.school_id
+GROUP BY s.school_name
+ORDER BY num_people DESC;
+```
+| SCHOOL_NAME                 | NUM_PEOPLE |
+|-----------------------------|------------|
+| Clinton Central School      | 41         |
+| New Hartford Central School | 31         |
+| Fayetteville-Manlius School | 18         |
+</details>
