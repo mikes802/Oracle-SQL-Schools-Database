@@ -268,3 +268,65 @@ ON p.school_id = s.school_id;
 | Louis Bell     | student | N/A   | Fayetteville-Manlius School |
 | Diana Williams | student | N/A   | Fayetteville-Manlius School |
 | Dennis Russell | teacher | 39913 | Fayetteville-Manlius School |
+</details>
+
+> Q10. Write a query that returns all classroom ID's and teachers, ordering by school name, year, semester, and then subject.
+<details><summary>Click here for SQL code</summary>
+    
+```sql
+-- Output classroom information and order by four columns.
+SELECT
+    c.classroom_id,
+    p.first_name || ' ' || p.last_name AS teacher_name,
+    c.semester,
+    c.year,
+    sub.subject,
+    sch.school_name
+FROM classrooms c
+INNER JOIN teachers t
+ON c.teacher_id = t.teacher_id 
+INNER JOIN people p 
+ON t.person_id = p.person_id
+INNER JOIN subjects sub
+ON c.subject_id = sub.subject_id
+INNER JOIN schools sch
+ON p.school_id = sch.school_id
+ORDER BY
+    school_name,
+    year,
+    semester,
+    subject;
+```
+| CLASSROOM_ID | TEACHER_NAME     | SEMESTER | YEAR | SUBJECT | SCHOOL_NAME                 |
+|--------------|------------------|----------|------|---------|-----------------------------|
+| 7            | Lisa Hall        | fall     | 2020 | English | Clinton Central School      |
+| 5            | Daniel Lewis     | fall     | 2020 | French  | Clinton Central School      |
+| 3            | Sarah Garcia     | fall     | 2020 | History | Clinton Central School      |
+| 1            | Thomas Thompson  | fall     | 2020 | Math    | Clinton Central School      |
+| 9            | Paul Hill        | fall     | 2020 | Science | Clinton Central School      |
+| 8            | Lisa Hall        | spring   | 2021 | English | Clinton Central School      |
+| 6            | Daniel Lewis     | spring   | 2021 | French  | Clinton Central School      |
+| 4            | Sarah Garcia     | spring   | 2021 | History | Clinton Central School      |
+| 2            | Thomas Thompson  | spring   | 2021 | Math    | Clinton Central School      |
+| 10           | Paul Hill        | spring   | 2021 | Science | Clinton Central School      |
+| 27           | Roger Long       | fall     | 2020 | English | Fayetteville-Manlius School |
+| 25           | Martha Thomas    | fall     | 2020 | French  | Fayetteville-Manlius School |
+| 23           | Kelly Thomas     | fall     | 2020 | History | Fayetteville-Manlius School |
+| 21           | Dennis Russell   | fall     | 2020 | Math    | Fayetteville-Manlius School |
+| 29           | Megan Gray       | fall     | 2020 | Science | Fayetteville-Manlius School |
+| 28           | Roger Long       | spring   | 2021 | English | Fayetteville-Manlius School |
+| 26           | Martha Thomas    | spring   | 2021 | French  | Fayetteville-Manlius School |
+| 24           | Kelly Thomas     | spring   | 2021 | History | Fayetteville-Manlius School |
+| 22           | Dennis Russell   | spring   | 2021 | Math    | Fayetteville-Manlius School |
+| 30           | Megan Gray       | spring   | 2021 | Science | Fayetteville-Manlius School |
+| 17           | Hannah Davis     | fall     | 2020 | English | New Hartford Central School |
+| 15           | Nathan Carter    | fall     | 2020 | French  | New Hartford Central School |
+| 13           | Adam Thomas      | fall     | 2020 | History | New Hartford Central School |
+| 11           | Douglas Martinez | fall     | 2020 | Math    | New Hartford Central School |
+| 19           | Jacqueline Cook  | fall     | 2020 | Science | New Hartford Central School |
+| 18           | Hannah Davis     | spring   | 2021 | English | New Hartford Central School |
+| 16           | Nathan Carter    | spring   | 2021 | French  | New Hartford Central School |
+| 14           | Adam Thomas      | spring   | 2021 | History | New Hartford Central School |
+| 12           | Douglas Martinez | spring   | 2021 | Math    | New Hartford Central School |
+| 20           | Jacqueline Cook  | spring   | 2021 | Science | New Hartford Central School |
+</details>
