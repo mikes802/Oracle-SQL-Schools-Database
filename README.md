@@ -1,6 +1,8 @@
 # Oracle SQL Schools Database
 Oracle SQL project on a "Schools" database schema consisting of eight tables.  
-
+> Q1. Create queries that can be used on all eight tables to find a record count.
+<details><summary>Click here for SQL code</summary>  
+    
 ```sql
 /*
 Eight queries that return one row and one column 
@@ -61,4 +63,35 @@ SELECT
 FROM teachers;
 ```
 RECORD_COUNT  
-15
+15  
+</details>  
+
+> Q2. Create a query to output the names and record counts of four different tables.
+```sql
+-- Query outputting table names and record count for four tables in database
+SELECT 
+    'people' AS table_name,
+    COUNT(*) AS num_records
+FROM people
+UNION
+SELECT
+    'principals' AS table_name,
+    COUNT(*) AS num_records
+FROM principals
+UNION
+SELECT
+    'students' AS table_name,
+    COUNT(*) AS num_records
+FROM students
+UNION
+SELECT
+    'teachers' AS table_name,
+    COUNT(*) AS num_records
+FROM teachers;
+```
+| TABLE_NAME | NUM_RECORDS |
+|------------|-------------|
+| people     | 90          |
+| principals | 3           |
+| students   | 72          |
+| teachers   | 15          |
