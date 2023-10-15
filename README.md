@@ -348,3 +348,33 @@ FROM people ps
   JOIN teachers t ON t.teacher_id = c.teacher_id
   JOIN people pt ON pt.person_id = t.person_id;
 ```
+</details>
+
+> Q12. Write a query that outputs all students in Megan Gray's spring, 2021 Science class. Show student name and grade, ordered highest to lowest grade. Use the view just created.
+<details><summary>Click here for SQL code</summary>
+    
+```sql
+-- Find students in specific class with highest grades at the top.
+-- Use previously created view classroom_students_view.
+SELECT
+    student,
+    grade
+FROM classroom_students_view
+WHERE teacher = 'Megan Gray'
+  AND semester = 'spring'
+  AND year = '2021'
+  AND subject = 'Science'
+ORDER BY grade DESC;
+```
+| STUDENT           | GRADE |
+|-------------------|-------|
+| Willie Hayes      | 95    |
+| Dylan Smith       | 87    |
+| Andrea Richardson | 81    |
+| Wayne Davis       | 79    |
+| Louis Bell        | 76    |
+| Madison Price     | 72    |
+| Juan Rivera       | 69    |
+| Teresa Foster     | 68    |
+| Lori White        | 64    |
+</details>
