@@ -151,3 +151,26 @@ ORDER BY num_people DESC;
 | New Hartford Central School | 31         |
 | Fayetteville-Manlius School | 18         |
 </details>
+
+> Q5. Create a query to output the number of students associated with each school sorted in descending order.
+<details><summary>Click here for SQL code</summary>
+    
+```sql
+-- Number of students associated with each school, sort descending order.
+SELECT
+    sc.school_name,
+    COUNT(st.student_id) AS num_students
+FROM students st
+LEFT JOIN people p
+ON st.person_id = p.person_id
+INNER JOIN schools sc
+ON p.school_id = sc.school_id
+GROUP BY sc.school_name
+ORDER BY num_students DESC;
+```
+| SCHOOL_NAME                 | NUM_STUDENTS |
+|-----------------------------|--------------|
+| Clinton Central School      | 35           |
+| New Hartford Central School | 25           |
+| Fayetteville-Manlius School | 12           |
+</details>
