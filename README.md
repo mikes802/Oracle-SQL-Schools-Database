@@ -378,3 +378,29 @@ ORDER BY grade DESC;
 | Teresa Foster     | 68    |
 | Lori White        | 64    |
 </details>
+
+> Q13. Create a query that gets the full name of the teacher who teaches Science at Fayetteville-Manlius School in the spring of 2021.
+<details><summary>Click here for SQL code</summary>
+    
+```sql
+-- Find name of teacher matching the specifications.
+SELECT
+    p.first_name || ' ' || p.last_name AS teacher_name
+FROM classrooms c
+INNER JOIN teachers t
+ON c.teacher_id = t.teacher_id
+INNER JOIN people p
+ON t.person_id = p.person_id
+INNER JOIN subjects sub
+ON c.subject_id = sub.subject_id
+INNER JOIN schools sch
+ON p.school_id = sch.school_id
+WHERE sub.subject = 'Science'
+  AND sch.school_name LIKE 'Fay%'
+  AND c.semester = 'spring'
+  AND c.year = '2021';
+```
+| TEACHER_NAME |
+|--------------|
+| Megan Gray   |
+</details>
