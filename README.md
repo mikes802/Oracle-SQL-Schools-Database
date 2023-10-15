@@ -20,3 +20,45 @@ FROM classrooms;
 ```
 RECORD_COUNT  
 30
+```sql
+SELECT
+    COUNT(*) AS record_count
+FROM people;
+```
+RECORD_COUNT  
+90
+```
+SELECT
+    COUNT(*) AS record_count
+FROM principals;
+```
+RECORD_COUNT  
+3
+```sql
+SELECT
+    COUNT(*) AS record_count
+FROM schools;
+```
+RECORD_COUNT  
+3
+```sql
+SELECT
+    COUNT(*) AS record_count
+FROM students;
+```
+RECORD_COUNT  
+72
+```sql
+SELECT
+    COUNT(*) AS record_count
+FROM subjects;
+```
+RECORD_COUNT  
+5
+```sql
+SELECT
+    COUNT(*) AS record_count
+FROM teachers;
+```
+RECORD_COUNT  
+15
