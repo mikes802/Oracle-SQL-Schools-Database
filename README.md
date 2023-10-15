@@ -404,3 +404,60 @@ WHERE sub.subject = 'Science'
 |--------------|
 | Megan Gray   |
 </details>
+
+> PL/SQL Q1. Text
+<details><summary>Click here for PL/SQL code</summary>
+
+```sql
+SET SERVEROUTPUT ON
+-- Create function to find name of teacher matching the specifications.
+CREATE OR REPLACE FUNCTION get_classroom_teacher(
+  subject_in        IN  subjects.subject%TYPE,
+  school_name_in    IN  schools.school_name%TYPE,
+  year_in           IN  classrooms.year%TYPE,
+  semester_in       IN  classrooms.semester%TYPE
+) RETURN VARCHAR2
+IS
+  l_teacher_name    VARCHAR2(40);
+
+BEGIN
+    SELECT
+    p.first_name || ' ' || p.last_name AS teacher_name
+    INTO l_teacher_name
+    FROM classrooms c
+    INNER JOIN teachers t ON c.teacher_id = t.teacher_id
+    INNER JOIN people p ON t.person_id = p.person_id
+    INNER JOIN subjects sub ON c.subject_id = sub.subject_id
+    INNER JOIN schools sch ON p.school_id = sch.school_id
+    WHERE sub.subject = subject_in
+      AND sch.school_name = school_name_in
+      AND c.semester = semester_in
+      AND c.year = year_in;
+    
+  RETURN l_teacher_name;
+
+EXCEPTION
+    WHEN no_data_found THEN
+      RAISE_APPLICATION_ERROR(-20101, 'No teacher found.');
+      
+END get_classroom_teacher;
+
+DECLARE
+  l_subject     subjects.subject%TYPE       := 'Science';
+  l_school      schools.school_name%TYPE    := 'Fayetteville-Manlius School';
+  l_year        classrooms.year%TYPE        := 2021;
+  l_semester    classrooms.semester%TYPE    := 'spring';
+  l_teacher     VARCHAR2(40);
+BEGIN
+  l_teacher     :=  get_classroom_teacher(
+                subject_in      =>  l_subject,
+                school_name_in  =>  l_school,
+                year_in         =>  l_year,
+                semester_in     =>  l_semester
+                );
+  
+  DBMS_OUTPUT.PUT_LINE('The teacher is ' || l_teacher || '.');
+    
+END;
+```
+![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/f7707479-e50e-4268-b3f6-dcb83ecc994c)
