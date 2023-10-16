@@ -549,3 +549,60 @@ END;
 ```
 ![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/3aabb0ac-d3e7-4814-a3b6-e32b3d693f1b)
 </details>
+
+> PL/SQL Q5. Create a row-level trigger that will fire when a record is inserted in the `classrooms` table or when a `teacher_id` or `subject_id` is updated. If the change would result in a classroom with a teacher that does not teach that subject, an exception message should occur. Test with the two given insert statements. The first should succeed and the second should fail.
+<details><summary>Click here for PL/SQL code</summary>
+
+```sql
+-- Create trigger for insert or update in classrooms table.
+CREATE OR REPLACE TRIGGER classrooms_biu_trigger
+BEFORE
+  INSERT
+  OR UPDATE OF teacher_id, subject_id
+ON classrooms
+FOR EACH ROW
+DECLARE
+  invalid_subject       EXCEPTION;
+  l_subject_id          teachers.subject_id%TYPE;
+  l_teacher_name        VARCHAR2(40);
+  l_new_subject_name    subjects.subject%TYPE;
+
+BEGIN
+  SELECT
+    p.first_name || ' ' || p.last_name,
+    t.subject_id
+  INTO l_teacher_name, l_subject_id
+  FROM teachers t
+  INNER JOIN people p ON t.person_id = p.person_id
+  WHERE t.teacher_id = :NEW.teacher_id;
+  
+  SELECT subject
+  INTO l_new_subject_name
+  FROM subjects
+  WHERE subject_id = :NEW.subject_id;
+  
+  IF :NEW.subject_id != l_subject_id THEN
+    RAISE invalid_subject;
+  END IF;
+  
+EXCEPTION
+  WHEN invalid_subject THEN
+    RAISE_APPLICATION_ERROR(-20100,
+        l_teacher_name || ' does not teach ' ||
+        l_new_subject_name || '.');
+
+END classrooms_biu_trigger;
+
+INSERT INTO classrooms
+(teacher_id, subject_id, semester, year)
+VALUES (1, 1, 'spring', 2022);
+```
+![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/aba3d74b-34bd-4880-bfd6-e5e2a843b197)
+
+```sql
+INSERT INTO classrooms
+(teacher_id, subject_id, semester, year)
+VALUES (2, 1, 'spring', 2022);
+```
+![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/2e63d6b9-e882-4e19-8791-0d02f505669d)
+</details>
