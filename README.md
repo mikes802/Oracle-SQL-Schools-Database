@@ -486,3 +486,34 @@ BEGIN
 END;
 ```
 ![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/632ac23a-4afd-44ca-bf5d-732c994f5757)
+</details>
+
+> PL/SQL Q3. In a PL/SQL block, declare a cursor named `teacher_cursor` that gets the full names and salaries of all the teachers ordered by last name and then first name. It should loop through the cursor and return "[Teacher name] earns [salary] per year".
+<details><summary>Click here for PL/SQL code</summary>
+
+```sql
+-- Create cursor to output teacher names and salaries.
+DECLARE
+  CURSOR teacher_cursor
+  IS
+    SELECT
+        p.first_name || ' ' || p.last_name AS teacher_name,
+        t.salary
+    FROM teachers t
+    LEFT JOIN people p ON t.person_id = p.person_id
+    ORDER BY p.last_name, p.first_name;
+    
+  l_teacher teacher_cursor%ROWTYPE;
+  
+BEGIN
+
+  FOR l_teacher IN teacher_cursor LOOP
+    DBMS_OUTPUT.PUT_LINE(l_teacher.teacher_name || ' earns' ||
+                         TO_CHAR(l_teacher.salary, '$99,999') || 
+                         ' per year.');
+  END LOOP;
+  
+END;
+```
+![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/7f4a6d43-3205-47bb-9095-8cc0a42e4e08)
+</details>
