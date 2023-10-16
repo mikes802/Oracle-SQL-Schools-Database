@@ -517,3 +517,35 @@ END;
 ```
 ![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/7f4a6d43-3205-47bb-9095-8cc0a42e4e08)
 </details>
+
+> PL/SQL Q4. Modify the cursor from above so that only teachers from a passed-in school are found.
+<details><summary>Click here for PL/SQL code</summary>
+
+```sql
+-- Output names and salaries of teachers from specific school
+DECLARE
+  CURSOR teacher_cursor(teacher_school_name VARCHAR2)
+  IS
+    SELECT
+        p.first_name || ' ' || p.last_name AS teacher_name,
+        t.salary
+    FROM teachers t
+    LEFT JOIN people p ON t.person_id = p.person_id
+    INNER JOIN schools s ON p.school_id = s.school_id
+    WHERE  school_name = teacher_school_name
+    ORDER BY p.last_name, p.first_name;
+    
+  l_teacher teacher_cursor%ROWTYPE;
+  
+BEGIN
+
+  FOR l_teacher IN teacher_cursor('New Hartford Central School') LOOP
+    DBMS_OUTPUT.PUT_LINE(l_teacher.teacher_name || ' earns' ||
+                         TO_CHAR(l_teacher.salary, '$99,999') || 
+                         ' per year.');
+  END LOOP;
+  
+END;
+```
+![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/3aabb0ac-d3e7-4814-a3b6-e32b3d693f1b)
+</details>
