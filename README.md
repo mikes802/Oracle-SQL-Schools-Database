@@ -1,5 +1,25 @@
 # Oracle SQL Schools Database
-Oracle SQL project on a "Schools" database schema consisting of eight tables.  
+This is the Oracle SQL and PL/SQL project I did for the developer course through Central Michigan University. This was done using Oracle SQL Developer. A `Schools Schema` was provided (Entity Relationship Diagram below), and I was tasked with creating SQL queries and PL/SQL (Procedural Language/SQL) procedures that worked with the database to get the required answers.
+
+While I have done SQL projects before, this was interesting because I learned PL/SQL, including:
+- Subprograms
+- Variables and constants
+- Conditional processing
+- Exceptions
+- Loops
+- Cursors
+- Packages
+- Triggers
+
+## Table of Contents
+1. [Entity Relationship Diagram](#entity-relationship-diagram)
+2. [SQL Queries](#sql-queries)
+3. [PL/SQL Work](#plsql-work)
+
+## [Entity Relationship Diagram](#table-of-contents)  
+![image](https://github.com/mikes802/Oracle-SQL-Schools-Database/assets/99853599/ab1b3ea3-a7b7-4503-b4fc-4fdcdc8d6703)
+
+## [SQL Queries](#table-of-contents)
 > Q1. Create queries that can be used on all eight tables to find a record count.
 <details><summary>Click here for SQL code</summary>  
     
@@ -404,6 +424,8 @@ WHERE sub.subject = 'Science'
 |--------------|
 | Megan Gray   |
 </details>
+
+## [PL/SQL Work](#table-of-contents)
 
 > PL/SQL Q1. Write a function called `get_classroom_teacher()` that takes four parameters. Given the arguments, it should return the full name of the classroom teacher. Write a PL/SQL block calling the function with specific variables.
 <details><summary>Click here for PL/SQL code</summary>
