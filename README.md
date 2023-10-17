@@ -1,5 +1,5 @@
 # Oracle SQL Schools Database
-This is the Oracle SQL and PL/SQL project I did for the developer course through Central Michigan University. This was done using Oracle SQL Developer. A `Schools Schema` was provided (Entity Relationship Diagram below), and I was tasked with creating SQL queries and PL/SQL (Procedural Language/SQL) procedures that worked with the database to get the required answers.
+This is the Oracle SQL and PL/SQL project I did for the developer course through Central Michigan University. This was done using Oracle SQL Developer. A `Schools Schema` was provided (Entity Relationship Diagram below), and I was tasked with creating SQL queries and PL/SQL (Procedural Language/SQL) files that worked with the database to get the required answers.
 
 While I have done SQL projects before, this was interesting because I learned PL/SQL, including:
 - Subprograms
